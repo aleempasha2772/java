@@ -31,7 +31,6 @@ class Son extends Father{
 }
 
 
-
 public class MultilevelInheritanceDemo {
 	public static void main(String[] args) {
 		Son son = new Son("Suresh", "Ramesh", "Saurabh");
