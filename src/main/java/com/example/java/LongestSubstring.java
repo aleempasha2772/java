@@ -4,34 +4,28 @@ import java.util.HashMap;
 
 public class LongestSubstring {
 	
-	public static int lengthOfLongestSubstring(String str) {
-		
-		char[] arr = str.toCharArray();
-		int left = 0;
-		int maxLenght = 0;
+	public static int LongestSubString(String str) {
 		HashMap<Character,Integer> map = new HashMap<>();
+		int left = 0;
+		int right = 0;
+		int maxLength = 0;
+		char[] arr = str.toCharArray();
 		
-		
-		for(int right=0;right<arr.length;right++) {
+		for(right = 0;right<arr.length;right++) {
 			if(map.containsKey(arr[right]) && map.get(arr[right]) >= left) {
 				left = map.get(arr[right]);
 			}
+			
 			map.put(arr[right], right);
-			maxLenght = Math.max(maxLenght, right-left);
+			
+			maxLength = Math.max(maxLength, right-left);
 		}
-		return maxLenght;
+		
+		return maxLength;
 	}
 	
-	
 	public static void main(String[] args) {
-		String S = "aleempasha";
-        System.out.println("Length of the longest substring without repeating characters: " + lengthOfLongestSubstring(S));
-
-        String S2 = "bbbbb";
-        System.out.println("Length of the longest substring without repeating characters: " + lengthOfLongestSubstring(S2));
-
-        String S3 = "pwwkew";
-        System.out.println("Length of the longest substring without repeating characters: " + lengthOfLongestSubstring(S3));
+		System.out.println(LongestSubString("aleempasha"));
 	}
 
 }
