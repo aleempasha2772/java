@@ -13,6 +13,9 @@ Hollow Diamond Star Pattern
 Cross Star Pattern
 Hollow Pyramid Star Pattern
 
+
+
+
 Array Problems:
 Reverse an array in place.
 Find the maximum and minimum elements in an array.
