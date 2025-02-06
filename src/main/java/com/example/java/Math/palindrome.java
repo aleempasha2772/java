@@ -39,8 +39,8 @@ public class palindrome {
 		}else {
 			System.out.println("not a palindrome");
 		}
-
 		System.out.println(isPalindrome2("nitin"));
+		//System.out.println(2%2);
 	}
     
 }
