@@ -14,7 +14,5 @@ public class Vowels {
 		}
 		System.out.println(v);
 		System.out.println(c);
-		
-		
 	}
 }
