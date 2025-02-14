@@ -100,6 +100,9 @@ public class BinaryTree {
         System.out.print(root.data+ " ");
         rightView(root.right);
     }
+    
+    
+    
 
 
 
