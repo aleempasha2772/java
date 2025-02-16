@@ -109,6 +109,8 @@ public class BinaryTree {
     public static void main(String args[]){
         BinaryTree bt = new BinaryTree();
         bt.CreateBinaryTree();
+        
+        
 
         System.out.println("Pre-Order Traverse");
         bt.PreOrder(bt.root);

@@ -2,7 +2,7 @@ package com.example.java.data_structures;
 
 public class Tree {
 	private TreeNode root;
-    private class TreeNode{
+    public class TreeNode{
         private int data;
         TreeNode left;
         TreeNode right;
