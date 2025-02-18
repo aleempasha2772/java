@@ -1,5 +1,9 @@
 package com.example.java;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 /*
  * Binary Pattern
 	You have been given an input integer 'N'. Your task is to print the following binary pattern for it.
@@ -18,15 +22,36 @@ package com.example.java;
 
 public class BinaryPattern {
 	public static void main(String[] args) {
-		int n = 5;
+//		int n = 5;
+//		
+//		for(int i=n;i>0;i--) {
+//			char character = (i%2!=0) ? '1':'0';
+//			for(int j=0;j<i;j++) {
+//				System.out.print(character);
+//			}
+//			System.out.println();
+//		}
 		
-		for(int i=n;i>0;i--) {
-			char character = (i%2!=0) ? '1':'0';
-			for(int j=0;j<i;j++) {
-				System.out.print(character);
-			}
-			System.out.println();
+		int[] a = {3,4,2,1,3,3};
+		int[] b = {4,3,5,3,9,3};
+		Map<Integer,Integer> map = new HashMap<>();
+		if(a.length == b.length) {
+			Arrays.sort(a);
+			Arrays.sort(b);
 		}
+//		for(int i=0;i<a.length;i++) {
+//			System.out.print(a[i]+" ");
+//		}
+//		System.out.println();
+//		for(int i=0;i<b.length;i++) {
+//			System.out.print(b[i]+" ");
+//		}
+		
+		for(int i=0;i<a.length;i++) {
+			map.put(a[i], b[i]);
+		}
+		System.out.print(map);
+		
 	}
 	
 
