@@ -6,7 +6,16 @@ public class Main {
 		/*
 		 * initializing a graph
 		 */
-		Graph graph = new Graph(5);
+		
+		/*
+		 * for adjacency matrix 
+		 */
+		//Graph graph = new Graph(5);
+		
+		/*
+		 * for adjacency List 
+		 */
+		Graph graph = new Graph();
 		
 		/*
 		 * adding nodes to graph
