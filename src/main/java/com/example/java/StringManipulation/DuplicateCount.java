@@ -20,7 +20,7 @@ public class DuplicateCount {
 		System.out.println(map);
 		
 		for(Character e:map.keySet()) {
-			if(map.get(e)==1) {
+			if(map.get(e)>1) {
 				System.out.println(e+":"+map.get(e));
 				break;
 			}

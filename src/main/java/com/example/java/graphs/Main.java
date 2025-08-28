@@ -30,19 +30,22 @@ public class Main {
 		 * adding edges between the nodes
 		 */
 		
-		graph.addEdge(0, 1);
-		graph.addEdge(1, 2);
-		graph.addEdge(1, 4);
-		graph.addEdge(2, 3);
-		graph.addEdge(2, 4);
-		graph.addEdge(4, 0);
-		graph.addEdge(4, 2);
+		graph.addEdgeUndirectedGrapgh(0, 1);
+		graph.addEdgeUndirectedGrapgh(1, 2);
+		graph.addEdgeUndirectedGrapgh(1, 4);
+		graph.addEdgeUndirectedGrapgh(2, 3);
+		graph.addEdgeUndirectedGrapgh(2, 4);
+		graph.addEdgeUndirectedGrapgh(4, 0);
+		graph.addEdgeUndirectedGrapgh(4, 2);
 		
 		
 		/*
 		 * printing the Adjacency matrix
 		 */
 		graph.print();
+		
+        graph.depthFirstSearchIterative(0);
+
 		
 		
 		

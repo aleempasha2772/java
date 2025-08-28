@@ -2,6 +2,7 @@ package com.example.java.graphs;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Stack;
 
 public class Graph {
 	
@@ -64,12 +65,8 @@ public class Graph {
 		adjacencyList.add(currentList);
 	}
 	public void addEdgeUndirectedGrapgh(int source,int destination) {
-		LinkedList<Node> currentList = adjacencyList.get(source);
-		Node dest = adjacencyList.get(destination).get(0);
-		currentList.add(dest);
-		LinkedList<Node> currentList2 = adjacencyList.get(destination);
-		Node dest2 = adjacencyList.get(source).get(0);
-		currentList2.add(dest2);
+		addEdge(source,destination);
+		addEdge(destination,source);
 	}
 	
 	public void addEdge(int source,int destination) {
@@ -97,6 +94,48 @@ public class Graph {
 			}
 			System.out.println();
 		}
+	}
+	 private int findNodeIndex(Node node) {
+	        for (int i = 0; i < adjacencyList.size(); i++) {
+	            // First element in each linked list is the node itself
+	            if (adjacencyList.get(i).get(0) == node) {
+	                return i;
+	            }
+	        }
+	        return -1; // Not found
+	    }
+	
+	public void depthFirstSearchIterative(int start) {
+		if(start<0 || start >= adjacencyList.size()) {
+			return;
+		}
+		boolean[] visited = new boolean[adjacencyList.size()];
+		Stack<Integer> stack = new Stack<>();
+		
+		System.out.println("Iterative BFS");
+		
+		visited[start] = true;
+		stack.push(start);
+		while(!stack.isEmpty()) {
+			int currentIndex = stack.pop();
+			Node currentNode = adjacencyList.get(currentIndex).get(0);
+			System.out.print(currentNode.data+ " ");
+			LinkedList<Node> neightbours = adjacencyList.get(currentIndex);
+			
+			for (int i = neightbours.size() - 1; i >= 1; i--) {
+				Node neighbour = neightbours.get(i);
+				int neighborIndex = findNodeIndex(neighbour);
+                
+                if (neighborIndex != -1 && !visited[neighborIndex]) {
+                    visited[neighborIndex] = true;
+                    stack.push(neighborIndex);
+				
+			}
+			
+		}
+			  System.out.println();
+	}
+	
 	}
 	
 }

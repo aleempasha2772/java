@@ -11,7 +11,6 @@ public class PrimeNumber {
     			return false;
     		}
     	}
-    	
     	return true;
     }
 
