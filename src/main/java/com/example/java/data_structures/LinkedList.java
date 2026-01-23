@@ -1,32 +1,32 @@
 package com.example.java.data_structures;
 
 public class LinkedList {
-    Node head;
-    static class Node{
-    	int data;
-    	Node next;
-    	public Node(int data) {
-    		this.data = data;
-    		this.next = null;
-    	}
-    }
-    
-    public static LinkedList insert(LinkedList list,int data) {
-    	Node newNode = new Node(data);
-    	newNode.next = null;
-    	
-    	if(list.head == null) {
-    		list.head = newNode;
-    	}else {
-    		Node current = list.head;
-    		while(current.next!=null) {
-    			current = current.next;
-    		}
-    		current.next = newNode;
-    	}
-    	return list;
-    }
-    
+//    Node head;
+//    static class Node{
+//    	int data;
+//    	Node next;
+//    	public Node(int data) {
+//    		this.data = data;
+//    		this.next = null;
+//    	}
+//    }
+//    
+//    public static LinkedList insert(LinkedList list,int data) {
+//    	Node newNode = new Node(data);
+//    	newNode.next = null;
+//    	
+//    	if(list.head == null) {
+//    		list.head = newNode;
+//    	}else {
+//    		Node current = list.head;
+//    		while(current.next!=null) {
+//    			current = current.next;
+//    		}
+//    		current.next = newNode;
+//    	}
+//    	return list;
+//    }
+//    
     public static void display(LinkedList list) {
     	Node current = list.head;
     	if(current == null) {
@@ -38,33 +38,61 @@ public class LinkedList {
     		}
     	}
     }
-    
-    public static void delete(LinkedList list,int key){
-        Node currentNode = list.head;
-        Node prev= null;
-
-        if (currentNode != null && currentNode.data == key){
-            list.head = currentNode.next;
-            System.out.println(key + " found and deleted");
-            // Return the updated List
-            
-        }
-
-        while(currentNode!=null && currentNode.data != key){
-            prev = currentNode;
-            currentNode = currentNode.next;
-        }
-        if(currentNode!= null){
-            prev.next = currentNode.next;
-            System.out.println(key + " found and deleted");
-        }
-        if (currentNode == null) {
-            // Display the message
-            System.out.println(key + " not found");
-        }
-        //save
-        
-    }
+//    
+//    public static void delete(LinkedList list,int key){
+//        Node currentNode = list.head;
+//        Node prev= null;
+//
+//        if (currentNode != null && currentNode.data == key){
+//            list.head = currentNode.next;
+//            System.out.println(key + " found and deleted");
+//            // Return the updated List
+//            
+//        }
+//
+//        while(currentNode!=null && currentNode.data != key){
+//            prev = currentNode;
+//            currentNode = currentNode.next;
+//        }
+//        if(currentNode!= null){
+//            prev.next = currentNode.next;
+//            System.out.println(key + " found and deleted");
+//        }
+//        if (currentNode == null) {
+//            // Display the message
+//            System.out.println(key + " not found");
+//        }
+//        //save
+//        
+//    }
+	
+	Node head;
+	static class Node{
+		int data;
+		Node next;
+		
+		public Node(int data) {
+			this.data = data;
+			this.next = null;
+		}
+	}
+	
+	
+	public static LinkedList insert(LinkedList list, int data) {
+		Node newNode = new Node(data);
+		if(list.head == null) {
+			list.head = newNode;
+		}else {
+			
+			Node current = list.head;
+			while(current.next!=null) {
+				current = current.next;
+			}
+			current.next = newNode;
+			
+		}
+		return list;
+	}
     
     public static void main(String[] args) {
     	LinkedList list = new LinkedList();
@@ -72,8 +100,8 @@ public class LinkedList {
     	insert(list,1);
     	insert(list,2);
     	display(list);
-    	delete(list,1);
-    	display(list);
+//    	delete(list,1);
+//    	display(list);
     }
     
     
