@@ -3,7 +3,6 @@ package com.example.java.Sorting;
 public class QuickSort {
 	
 	public static int partition(int[] arr, int start,int end) {
-		
 		int pivot = arr[end];
 		int i = start;
 		int j = end - 1;
@@ -12,7 +11,7 @@ public class QuickSort {
 			while(i<=end && arr[i]<pivot) {
 				i++;
 			}
-			while(j>=start && arr[j]> pivot) {
+			while(j>=start && arr[j]>pivot) {
 				j--;
 			}
 			if(i<=j) {
@@ -21,7 +20,7 @@ public class QuickSort {
 				j--;
 			}
 		}
-        swap(arr, i, end);
+		swap(arr,i,end);
 		return i;
 	}
 	
