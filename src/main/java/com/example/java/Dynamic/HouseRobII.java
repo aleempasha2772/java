@@ -49,7 +49,7 @@ public class HouseRobII {
 	public static void main(String[] args) {
 		// Test cases
 		System.out.println("House Robber II Problem - Test Results:");
-		System.out.println("=====================================");
+		System.out.println("---------------------");
 		
 		// Test Case 1: Normal case
 		int[] nums1 = {1, 2, 3, 1};
