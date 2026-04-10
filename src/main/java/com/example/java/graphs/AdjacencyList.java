@@ -1,9 +1,13 @@
 package com.example.java.graphs;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
 
 public class AdjacencyList {
     private Map<Integer, List<Integer>> adjList;
@@ -18,23 +22,15 @@ public class AdjacencyList {
 
     public void removeVertex(int vertex) {
         if (!adjList.containsKey(vertex)) return;
-
-        // 1. Remove the vertex itself
         adjList.remove(vertex);
-
-        // 2. Remove all references to this vertex from other adjacency lists
         for (List<Integer> neighbors : adjList.values()) {
-            // ⚠️ CRITICAL FIX: Use Integer.valueOf() to force remove(Object) instead of remove(int index)
             neighbors.remove(Integer.valueOf(vertex));
         }
     }
 
     public void addEdge(int source, int destination) {
-        // Auto-create vertices if they don't exist (prevents NullPointerException)
         addVertex(source);
         addVertex(destination);
-
-        // Prevent duplicate edges in undirected graph
         if (!adjList.get(source).contains(destination)) {
             adjList.get(source).add(destination);
             adjList.get(destination).add(source);
@@ -48,7 +44,6 @@ public class AdjacencyList {
         }
     }
 
-    // Helper to visualize the graph
     public void display() {
         System.out.println("📊 Adjacency List:");
         adjList.keySet().stream().sorted().forEach(vertex -> {
@@ -56,32 +51,83 @@ public class AdjacencyList {
         });
         System.out.println();
     }
+    
+    public void breadthFirstSearch(int startVertex) {
+        if (!adjList.containsKey(startVertex)) {
+            System.out.println("⚠️ Vertex " + startVertex + " does not exist in graph.");
+            return;
+        }
 
-    // ✅ MAIN METHOD
+        Queue<Integer> queue = new LinkedList<>();
+        Set<Integer> nodesVisited = new HashSet<>();
+        
+        queue.add(startVertex);
+        nodesVisited.add(startVertex);
+        
+        int level = 0;
+        System.out.println("🔍 BFS Traversal Order:");
+        System.out.println("   Level " + level + ": [" + startVertex + "]");
+        
+        while(!queue.isEmpty()) {
+            int levelSize = queue.size();
+            List<Integer> currentLevelNodes = new LinkedList<>();
+            
+            for (int i = 0; i < levelSize; i++) {
+                int currentVertex = queue.poll();
+                currentLevelNodes.add(currentVertex);
+                
+                for (int neighbor : adjList.getOrDefault(currentVertex, Collections.emptyList())) {
+                    if (!nodesVisited.contains(neighbor)) {
+                        queue.add(neighbor);
+                        nodesVisited.add(neighbor);
+                    }
+                }
+            }
+            
+            if (!queue.isEmpty()) {
+                level++;
+                System.out.println("   Level " + level + ": " + queue);
+            }
+        }
+        
+        System.out.println("✅ BFS Complete. Visited " + nodesVisited.size() + " nodes.");
+        System.out.println("   Order: " + String.join(" → ", 
+            nodesVisited.stream().map(String::valueOf).toArray(String[]::new)));
+        System.out.println();
+    }
+
     public static void main(String[] args) {
         AdjacencyList graph = new AdjacencyList();
 
-        // 1. Add vertices & edges
+        System.out.println("=== 🧪 GRAPH BFS DEMO ===\n");
+        
         System.out.println("✅ Adding vertices & edges...");
         graph.addEdge(0, 1);
         graph.addEdge(1, 2);
         graph.addEdge(0, 2);
         graph.addEdge(2, 3);
         graph.display();
+        
+        System.out.println("🔍 Running BFS starting from vertex 0:");
+        System.out.println("----------------------------------------");
+        graph.breadthFirstSearch(0);
+        System.out.println("----------------------------------------\n");
 
-        // 2. Remove an edge
         System.out.println("✅ Removing edge (0, 2)...");
         graph.removeEdge(0, 2);
         graph.display();
 
-        // 3. Remove a vertex (removes it + all incident edges)
         System.out.println("✅ Removing vertex 1...");
         graph.removeVertex(1);
         graph.display();
 
-        // 4. Add edge to non-existent vertex (auto-creates it)
         System.out.println("✅ Adding edge (0, 4) where 4 didn't exist...");
         graph.addEdge(0, 4);
         graph.display();
+        
+        System.out.println("🔍 Running BFS again from vertex 0:");
+        System.out.println("----------------------------------------");
+        graph.breadthFirstSearch(0);
+        System.out.println("----------------------------------------");
     }
 }
