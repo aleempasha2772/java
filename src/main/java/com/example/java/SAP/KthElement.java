@@ -35,10 +35,29 @@ public class KthElement {               // class name now matches the constructo
 
         reverseInOrder(root.left, k);             // then go to smaller elements
     }
+    
+    public int kthSmallest(Node root, int k) {
+		count = 0;
+		ans = -1;
+		inOrder(root, k);
+		return ans;
+	}
+    
+    private void inOrder(Node root, int k) {
+    	if (root == null || count >= k) {
+    		return;
+    	}
+    	inOrder(root.left,k);
+    	if(count < k) {
+    		ans = root.data;
+    		count++;
+    	}
+    	inOrder(root.right,k);
+    	
+    }
 
-    // Driver code
     public static void main(String[] args) {
-        // Create the BST:
+        // Build the BST:
         //       4
         //     /   \
         //    2     9
@@ -46,8 +65,9 @@ public class KthElement {               // class name now matches the constructo
         root.left = new Node(2);
         root.right = new Node(9);
 
-        KthElement solver = new KthElement();   // now matches the class name
+        KthElement solver = new KthElement();
 
+        // ----- Test kthLargest -----
         int k = 2;
         int result = solver.kthLargest(root, k);
         System.out.println("Kth largest (k=" + k + ") is: " + result);   // Output: 4
@@ -59,5 +79,18 @@ public class KthElement {               // class name now matches the constructo
         k = 3;
         result = solver.kthLargest(root, k);
         System.out.println("Kth largest (k=" + k + ") is: " + result);   // Output: 2
+
+        // ----- Test kthSmallest -----
+        k = 1;
+        result = solver.kthSmallest(root, k);
+        System.out.println("Kth smallest (k=" + k + ") is: " + result);   // Output: 2
+
+        k = 2;
+        result = solver.kthSmallest(root, k);
+        System.out.println("Kth smallest (k=" + k + ") is: " + result);   // Output: 4
+
+        k = 3;
+        result = solver.kthSmallest(root, k);
+        System.out.println("Kth smallest (k=" + k + ") is: " + result);   // Output: 9
     }
 }
