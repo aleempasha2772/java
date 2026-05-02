@@ -1,7 +1,12 @@
 package com.example.java.data_structures;
 
 public class Tree {
+	
+	
 	private TreeNode root;
+	private int minDiff = Integer.MAX_VALUE; // stores the global minimum difference
+    private Integer prev = null; 
+	
     public class TreeNode{
         private int data;
         TreeNode left;
@@ -76,8 +81,37 @@ public class Tree {
 
         }
     }
+    
+    public int minDiffInBST(TreeNode root) {
+    	minDiffInOrder(root);
+    	return minDiff;
+    }
+    
+    public void minDiffInOrder(TreeNode root) {
+    	if(root == null) {
+    		return;
+    	}
+    	minDiffInOrder(root.left);
+    	if(prev != null) {
+    		int diff = root.data - prev;
+    		if(diff < minDiff) {
+    			minDiff = diff;
+    		}
+    	}
+    	
+    	prev = root.data;
+    	minDiffInOrder(root.right);
+    	
+    }
+    
+    
+    
+    
 
     public static void main(String[] args) {
+    	
+    	
+    	
     	Tree tree = new Tree();
     	tree.createTree();
     	
@@ -91,7 +125,9 @@ public class Tree {
     	tree.PostOrder(tree.root);
     	System.out.println();
     	System.out.println("Tree Height");
-    	System.out.print(tree.TreeHeight(tree.root));
+    	System.out.println(tree.TreeHeight(tree.root));
+    	System.out.println("Min Distance");
+        System.out.println(tree.minDiffInBST(tree.root)); // FIXED: call on instance
     	
     }
 }
